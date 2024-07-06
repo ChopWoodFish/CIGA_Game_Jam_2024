@@ -309,12 +309,12 @@ PrefabInstance:
       value: BasePlateform
       objectReference: {fileID: 0}
     - target: {fileID: 1774323383604505725, guid: 14d1b70ac80a94b029129bba89893dd1, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
+      propertyPath: m_LocalScale.x
+      value: 0.52
       objectReference: {fileID: 0}
     - target: {fileID: 1774323383604505725, guid: 14d1b70ac80a94b029129bba89893dd1, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.7936889
+      propertyPath: m_LocalScale.y
+      value: 0.52
       objectReference: {fileID: 0}
     - target: {fileID: 1774323383604505725, guid: 14d1b70ac80a94b029129bba89893dd1, type: 3}
       propertyPath: m_LocalPosition.x
