@@ -240,5 +240,7 @@ public class BlockGameManager : MonoBehaviour
             listAccupation[tmpNewPos.x][tmpNewPos.y] = true;
             Debug.Log($"====occupy {tmpNewPos}");
         }
+
+        crtBlock.HideOutline();
     }
 }

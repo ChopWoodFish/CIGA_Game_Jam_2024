@@ -10,6 +10,7 @@ public class Block : MonoBehaviour
     public int width;
     public int height;
 
+    public List<BlockItem> listBlockItem = new List<BlockItem>();
     public List<Vector2Int> localPosOffset = new List<Vector2Int>();
 
     private void Awake()
@@ -17,7 +18,7 @@ public class Block : MonoBehaviour
         // localPosOffset.Add(new Vector2Int(0, 0));
         for (int i = 0; i < transBg.childCount; i++)
         {
-            var blockItem = transBg.GetChild(i);
+            var blockItem = transBg.GetChild(i).GetComponent<BlockItem>();
             int tmpWidth = (int) (blockItem.transform.localPosition.x / blockItemSize);
             if (tmpWidth >= width * blockItemSize)
             {
@@ -29,9 +30,18 @@ public class Block : MonoBehaviour
                 height = tmpHeight;
             }
             localPosOffset.Add(new Vector2Int(tmpHeight, tmpWidth));
+            listBlockItem.Add(blockItem);
         }
         width += 1;
         height += 1;
         Debug.Log($"Block {ID} width: {width}, height: {height}");
+    }
+
+    public void HideOutline()
+    {
+        foreach (var blockItem in listBlockItem)
+        {
+            blockItem.SetOutlineEnable(false);
+        }
     }
 }
