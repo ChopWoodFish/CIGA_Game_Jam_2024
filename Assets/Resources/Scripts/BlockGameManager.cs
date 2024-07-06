@@ -21,7 +21,7 @@ public class BlockGameManager : MonoBehaviour
     private int colNum;
 
     private List<List<Vector3>> listMapPos = new List<List<Vector3>>();
-    private List<List<bool>> listOccupation = new List<List<bool>>();
+    private List<List<int>> listOccupation = new List<List<int>>(); // -1:特殊初始方块占位 1:普通方块占位
     private Vector2Int crtBlockLeftBottomPos;
     private Block crtBlock;
     private float dropTimer;
@@ -63,11 +63,11 @@ public class BlockGameManager : MonoBehaviour
         for (int r = 0; r < rowNum; r++)
         {
             listMapPos.Add(new List<Vector3>());
-            listOccupation.Add(new List<bool>());
+            listOccupation.Add(new List<int>());
             for (int c = 0; c < colNum; c++)
             {
                 listMapPos[r].Add(new Vector3(c * oneBlockSize + oneBlockSize / 2f, r * oneBlockSize + oneBlockSize / 2f, 0));
-                listOccupation[r].Add(false);
+                listOccupation[r].Add(0);
             }
         }
         
@@ -86,7 +86,7 @@ public class BlockGameManager : MonoBehaviour
         {
             for (int c = 0; c < colNum; c++)
             {
-                listOccupation[r][c] = false;
+                listOccupation[r][c] = 0;
             }
         }
 
@@ -130,7 +130,7 @@ public class BlockGameManager : MonoBehaviour
         {
             var offset = tmpBlock.localPosOffset[i];
             Vector2Int tmpNewPos = lbPos + offset;
-            listOccupation[tmpNewPos.x][tmpNewPos.y] = true;
+            listOccupation[tmpNewPos.x][tmpNewPos.y] = -1;
             Debug.Log($"====occupy {tmpNewPos}");
         }
 
@@ -250,7 +250,7 @@ public class BlockGameManager : MonoBehaviour
             {
                 return false;
             }
-            bool isOccupied = listOccupation[tmpNewPos.x][tmpNewPos.y];
+            bool isOccupied = listOccupation[tmpNewPos.x][tmpNewPos.y] != 0;
             if (isOccupied)
             {
                 return false;
@@ -284,7 +284,7 @@ public class BlockGameManager : MonoBehaviour
             {
                 return false;
             }
-            bool isOccupied = listOccupation[tmpNewPos.x][tmpNewPos.y];
+            bool isOccupied = listOccupation[tmpNewPos.x][tmpNewPos.y] != 0;
             if (isOccupied)
             {
                 return false;
@@ -330,7 +330,7 @@ public class BlockGameManager : MonoBehaviour
         {
             var offset = crtBlock.localPosOffset[i];
             Vector2Int tmpNewPos = crtBlockLeftBottomPos + offset;
-            listOccupation[tmpNewPos.x][tmpNewPos.y] = true;
+            listOccupation[tmpNewPos.x][tmpNewPos.y] = 1;
             Debug.Log($"====occupy {tmpNewPos}");
         }
 
@@ -340,15 +340,19 @@ public class BlockGameManager : MonoBehaviour
 
     private void CheckBlockGameEnd()
     {
-        var listOcc = listOccupation[endRowIndex];
-        foreach (var isOcc in listOcc)
+        for (int r = endRowIndex; r < rowNum; r++)
         {
-            if (isOcc)
+            var listOcc = listOccupation[r];
+            foreach (var isOcc in listOcc)
             {
-                Debug.Log("Check game end!");
-                isGameEnd = true;
-                // crtBlock.gameObject.SetActive(false);
-                IntEventSystem.Send(GameEventEnum.BlockGameFinish, null);
+                if (isOcc == 1)
+                {
+                    Debug.Log("Check game end!");
+                    isGameEnd = true;
+                    // crtBlock.gameObject.SetActive(false);
+                    IntEventSystem.Send(GameEventEnum.BlockGameFinish, null);
+                    return;
+                }
             }
         }
     }
