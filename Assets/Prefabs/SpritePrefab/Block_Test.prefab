@@ -249,6 +249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8947620391703389763}
   - component: {fileID: 940493498431321041}
+  - component: {fileID: 5151691159797047025}
   m_Layer: 0
   m_Name: Block_Test
   m_TagString: Untagged
@@ -284,6 +285,18 @@ SortingGroup:
   m_SortingLayerID: -2060368995
   m_SortingLayer: 1
   m_SortingOrder: 0
+--- !u!114 &5151691159797047025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4593880280273395808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fbb4e9273a84c11b09be697118a9012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4873781007996164775
 GameObject:
   m_ObjectHideFlags: 0
