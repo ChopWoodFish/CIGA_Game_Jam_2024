@@ -207,7 +207,10 @@ public class BlockGameManager : MonoBehaviour
             else
             {
                 SettleDown();
-                GenBlock();
+                if (GameManager.Inst.gameStage == 1)
+                {
+                    GenBlock();   
+                }
                 ResetDropTimer();
             }
         }
@@ -344,6 +347,7 @@ public class BlockGameManager : MonoBehaviour
             {
                 Debug.Log("Check game end!");
                 isGameEnd = true;
+                // crtBlock.gameObject.SetActive(false);
                 IntEventSystem.Send(GameEventEnum.BlockGameFinish, null);
             }
         }
