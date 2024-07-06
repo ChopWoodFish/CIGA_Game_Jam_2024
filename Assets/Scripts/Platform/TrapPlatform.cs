@@ -21,22 +21,23 @@ public class TrapPlatform : MonoBehaviour
             {
                 playerMove.enabled = false;
             }
-            StartCoroutine(PlayerDieAndRespawn(collision.gameObject));
+            // StartCoroutine(PlayerDieAndRespawn(collision.gameObject));
+            IntEventSystem.Send(GameEventEnum.PlayerRespawn, collision.gameObject);
         }
     }
 
     IEnumerator PlayerDieAndRespawn(GameObject player)
     {
-        // Íæ¼ÒËÀÍö´¦Àí£¬ÀýÈç²¥·ÅËÀÍö¶¯»­µÈ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ç²¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         // ...
 
-        // ¼ÙÉèËÀÍö¶¯»­²¥·ÅÐèÒª2ÃëÖÓ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òª2ï¿½ï¿½ï¿½ï¿½
         yield return new WaitForSeconds(2);
 
-        // ¸´»îÍæ¼ÒÔÚÆðÊ¼Î»ÖÃ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼Î»ï¿½ï¿½
         player.transform.position = startPosition;
 
-        // ÖØÐÂÆôÓÃPlayerMove×é¼þ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½PlayerMoveï¿½ï¿½ï¿½
         PlayerMove playerMove = player.GetComponent<PlayerMove>();
         if (playerMove != null)
         {

@@ -1,6 +1,7 @@
 // 俄罗斯方块部分的总控制
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -25,12 +26,20 @@ public class BlockGameManager : MonoBehaviour
     private Block crtBlock;
     private float dropTimer;
 
+    private Vector3 playerRespawnPos;
+
     private bool isInited;
     private bool isGameEnd;
 
     private void Awake()
     {
         IntEventSystem.Register(GameEventEnum.BlockGameStart, OnBlockGameStart);
+        IntEventSystem.Register(GameEventEnum.PlayerRespawn, (param) =>
+        {
+            GameObject player = param as GameObject;
+            player.gameObject.SetActive(false);
+            StartCoroutine(PlayerDieAndRespawn(player));
+        });
     }
 
     private void OnBlockGameStart(object param)
@@ -67,6 +76,7 @@ public class BlockGameManager : MonoBehaviour
 
         isInited = true;
         
+        GenInitBlock();
         GenBlock();
     }
 
@@ -85,13 +95,45 @@ public class BlockGameManager : MonoBehaviour
             Destroy(nodeDropItem.GetChild(i).gameObject);
         }
         
+        GenInitBlock();
         GenBlock();
+    }
+
+    private void GenInitBlock()
+    {
+        var mapData = DataManager.GetMapInitBlockSO(1);
+        var playerPos = mapData.playerBlockPos;
+        var playerBlock = Instantiate(DataManager.GetGlobalDataSO().playerBlock);
+        ForceSettleBlock(playerBlock, playerPos);
+        var passPos = mapData.passBlockPos;
+        var passBlock = Instantiate(DataManager.GetGlobalDataSO().passBlock);
+        ForceSettleBlock(passBlock, passPos);
+
+        playerRespawnPos = GameObject.FindWithTag("Player").transform.position;
+    }
+
+    private void ForceSettleBlock(GameObject blockGO, Vector2Int lbPos)
+    {
+        Block tmpBlock = blockGO.GetComponent<Block>();
+        tmpBlock.transform.localScale = Vector3.one;
+        tmpBlock.transform.position = transform.position + listMapPos[lbPos.x][lbPos.y];
+        
+        for (int i = 0; i < tmpBlock.localPosOffset.Count; i++)
+        {
+            var offset = tmpBlock.localPosOffset[i];
+            Vector2Int tmpNewPos = lbPos + offset;
+            listOccupation[tmpNewPos.x][tmpNewPos.y] = true;
+            Debug.Log($"====occupy {tmpNewPos}");
+        }
+
+        tmpBlock.HideOutline();
     }
 
     private void GenBlock()
     {
         var blockPrefab = BlockPicker.SelectRandomBlock();
         crtBlock = Instantiate(blockPrefab,nodeDropItem).GetComponent<Block>();
+        crtBlock.GenBlockItem();
         Vector2Int mapPos = SelectGenPos();
         crtBlock.transform.localScale = Vector3.one;
         crtBlock.transform.position = transform.position + listMapPos[mapPos.x][mapPos.y];
@@ -296,6 +338,20 @@ public class BlockGameManager : MonoBehaviour
                 isGameEnd = true;
                 IntEventSystem.Send(GameEventEnum.BlockGameFinish, null);
             }
+        }
+    }
+    
+    IEnumerator PlayerDieAndRespawn(GameObject player)
+    {
+        yield return new WaitForSeconds(1);
+
+        player.transform.position = playerRespawnPos;
+        player.gameObject.SetActive(true);
+        
+        PlayerMove playerMove = player.GetComponent<PlayerMove>();
+        if (playerMove != null)
+        {
+            playerMove.enabled = true;
         }
     }
 }

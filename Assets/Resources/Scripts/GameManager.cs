@@ -49,9 +49,10 @@ public class GameManager : MonoBehaviour
         gameStage = 2;
         
         transGameUI.gameObject.SetActive(false);
+
+        vcStage2.Follow = GameObject.FindWithTag("Player").transform;
         
         vcStage1.gameObject.SetActive(false);
         vcStage2.gameObject.SetActive(true);
-        
     }
 }

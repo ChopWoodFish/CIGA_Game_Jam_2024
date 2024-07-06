@@ -36,10 +36,10 @@ public class Block : MonoBehaviour
         height += 1;
         Debug.Log($"Block {ID} width: {width}, height: {height}");
         
-        GenBlockItem();
+        // GenBlockItem();
     }
 
-    private void GenBlockItem()
+    public void GenBlockItem()
     {
         foreach (var itemBg in listBlockItem)
         {
