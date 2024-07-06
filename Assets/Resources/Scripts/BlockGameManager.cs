@@ -12,9 +12,11 @@ public class BlockGameManager : MonoBehaviour
     // public GameObject blockPrefab;
     private BlockPicker blockPicker;
     public Transform nodeDropItem;
+    public Transform transEndLine;
 
     public float oneBlockSize = 1f;
     public float oneDropTime = 1f;
+    public int endRowIndex = 5;
     
     private List<List<Vector3>> listMapPos = new List<List<Vector3>>();
     private List<List<bool>> listAccupation = new List<List<bool>>();
@@ -22,14 +24,12 @@ public class BlockGameManager : MonoBehaviour
     private Block crtBlock;
     private float dropTimer;
 
-    private void Awake()
-    {
-        blockPicker = new BlockPicker();
-        blockPicker.CollectPrefab();
-    }
+    private bool isGameEnd;
 
     private void Start()
     {
+        blockPicker = new BlockPicker();
+        blockPicker.CollectPrefab();
         int rowNum = nodeBg.childCount;
         int colNum = nodeBg.GetChild(0).childCount;
         Debug.Log($"detect map row: {rowNum}, col: {colNum}");
@@ -44,6 +44,9 @@ public class BlockGameManager : MonoBehaviour
                 listAccupation[r].Add(false);
             }
         }
+        
+        // init end line
+        transEndLine.position = transform.position + new Vector3(0, oneBlockSize * endRowIndex,0);
 
         TestGenBlock();
     }
@@ -80,7 +83,7 @@ public class BlockGameManager : MonoBehaviour
 
     private void Update()
     {
-        if (crtBlock == null)
+        if (crtBlock == null || isGameEnd)
         {
             return;
         }
@@ -242,5 +245,19 @@ public class BlockGameManager : MonoBehaviour
         }
 
         crtBlock.HideOutline();
+        CheckBlockGameEnd();
+    }
+
+    private void CheckBlockGameEnd()
+    {
+        var listOcc = listAccupation[endRowIndex];
+        foreach (var isOcc in listOcc)
+        {
+            if (isOcc)
+            {
+                Debug.Log("Check game end!");
+                isGameEnd = true;
+            }
+        }
     }
 }
