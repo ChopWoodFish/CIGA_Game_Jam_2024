@@ -1935,6 +1935,7 @@ MonoBehaviour:
   transGame: {fileID: 636014061}
   transGameUI: {fileID: 475667392}
   transGameUI2: {fileID: 1685152370}
+  mapIndex: 1
   gameStage: 0
   vcStage1: {fileID: 930490574}
   vcStage2: {fileID: 1559363279}

@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public Transform transGameUI;
     public Transform transGameUI2;
 
+    public int mapIndex = 1;
     public int gameStage;
     public CinemachineVirtualCamera vcStage1;
     public CinemachineVirtualCamera vcStage2;
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
         IntEventSystem.Register(GameEventEnum.GameStart, OnGameStart);
         IntEventSystem.Register(GameEventEnum.GoToTitle, OnGoToTitle);
         IntEventSystem.Register(GameEventEnum.PlatformGameStart, OnPlatformGameStart);
+        IntEventSystem.Register(GameEventEnum.GoToNextMap, GoToNextMap);
     }
 
     private void OnGameStart(object param)
@@ -44,6 +46,7 @@ public class GameManager : MonoBehaviour
     private void OnGoToTitle(object param)
     {
         StopAllCoroutines();
+        mapIndex = 1;
         gameStage = 0;
         
         transTitleUI.gameObject.SetActive(true);
@@ -75,5 +78,17 @@ public class GameManager : MonoBehaviour
 
         transGameUI.gameObject.SetActive(false);
         transGameUI2.gameObject.SetActive(true);
+    }
+
+    private void GoToNextMap(object param)
+    {
+        int nextMapIndex = mapIndex + 1;
+        var mapData = DataManager.GetMapInitBlockSO(nextMapIndex);
+        if (mapData != null)
+        {
+            mapIndex = nextMapIndex;
+            Debug.Log($"set map index {mapIndex}");
+            OnGameStart(null);
+        }
     }
 }

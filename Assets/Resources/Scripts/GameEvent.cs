@@ -8,4 +8,5 @@ public enum GameEventEnum
     PlatformGameStart,
     RefreshBlockPreview,
     PlayerRespawn,  // 玩家复活
+    GoToNextMap,
 }

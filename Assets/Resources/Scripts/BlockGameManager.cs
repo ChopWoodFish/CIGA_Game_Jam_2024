@@ -104,7 +104,7 @@ public class BlockGameManager : MonoBehaviour
     private void GenInitBlock()
     {
         var globalData = DataManager.GetGlobalDataSO();
-        var mapData = DataManager.GetMapInitBlockSO(1);
+        var mapData = DataManager.GetMapInitBlockSO(GameManager.Inst.mapIndex);
         var playerPos = mapData.playerBlockPos;
         var playerBlock = Instantiate(globalData.playerBlock);
         ForceSettleBlock(playerBlock, playerPos);
@@ -118,7 +118,9 @@ public class BlockGameManager : MonoBehaviour
         npcBlock = Instantiate(globalData.npcBlock);
         ForceSettleBlock(npcBlock, npcPos);
 
-        playerRespawnPos = GameObject.FindWithTag("Player").transform.position;
+        // playerRespawnPos = GameObject.FindWithTag("Player").transform.position;
+        playerRespawnPos = playerBlock.transform.position + new Vector3(0.5f, 0.5f);
+        Debug.Log($"set player respawn pos {playerRespawnPos}");
     }
 
     private void ForceSettleBlock(GameObject blockGO, Vector2Int lbPos)
@@ -387,6 +389,7 @@ public class BlockGameManager : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         player.transform.position = playerRespawnPos;
+        Debug.Log($"player respawn at {playerRespawnPos}");
         player.gameObject.SetActive(true);
         
         PlayerMove playerMove = player.GetComponent<PlayerMove>();
