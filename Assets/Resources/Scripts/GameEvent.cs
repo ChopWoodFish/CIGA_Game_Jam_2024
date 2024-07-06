@@ -6,6 +6,6 @@ public enum GameEventEnum
     GoToTitle,  // 回到标题
     BlockGameFinish,
     PlatformGameStart,
-    
+    RefreshBlockPreview,
     PlayerRespawn,  // 玩家复活
 }

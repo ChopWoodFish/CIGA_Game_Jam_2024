@@ -58,7 +58,7 @@ public class BlockGameManager : MonoBehaviour
     {
         rowNum = nodeBg.childCount;
         colNum = nodeBg.GetChild(0).childCount;
-        Debug.Log($"detect map row: {rowNum}, col: {colNum}");
+        // Debug.Log($"detect map row: {rowNum}, col: {colNum}");
 
         for (int r = 0; r < rowNum; r++)
         {
@@ -133,15 +133,33 @@ public class BlockGameManager : MonoBehaviour
             var offset = tmpBlock.localPosOffset[i];
             Vector2Int tmpNewPos = lbPos + offset;
             listOccupation[tmpNewPos.x][tmpNewPos.y] = -1;
-            Debug.Log($"====occupy {tmpNewPos}");
+            // Debug.Log($"====occupy {tmpNewPos}");
         }
 
         tmpBlock.HideOutline();
     }
 
+    private List<GameObject> listReadyGenBlockPrefab = new List<GameObject>();
     private void GenBlock()
     {
-        var blockPrefab = BlockPicker.SelectRandomBlock();
+        if (listReadyGenBlockPrefab.Count == 0)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                listReadyGenBlockPrefab.Add(BlockPicker.SelectRandomBlock());
+            }
+        }
+        else
+        {
+            listReadyGenBlockPrefab.Add(BlockPicker.SelectRandomBlock());
+        }
+        
+        Debug.Log($"gen block {listReadyGenBlockPrefab[0].name}, {listReadyGenBlockPrefab[1].name}, {listReadyGenBlockPrefab[2].name}");
+        
+        IntEventSystem.Send(GameEventEnum.RefreshBlockPreview, listReadyGenBlockPrefab.GetRange(1, 2));
+
+        var blockPrefab = listReadyGenBlockPrefab[0];
+        listReadyGenBlockPrefab.RemoveAt(0);
         crtBlock = Instantiate(blockPrefab,nodeDropItem).GetComponent<Block>();
         crtBlock.GenBlockItem();
         Vector2Int mapPos = SelectGenPos();
@@ -332,13 +350,13 @@ public class BlockGameManager : MonoBehaviour
 
     private void SettleDown()
     {
-        Debug.Log($"settle down block {crtBlock.ID} at LB pos: {crtBlockLeftBottomPos}");
+        // Debug.Log($"settle down block {crtBlock.ID} at LB pos: {crtBlockLeftBottomPos}");
         for (int i = 0; i < crtBlock.localPosOffset.Count; i++)
         {
             var offset = crtBlock.localPosOffset[i];
             Vector2Int tmpNewPos = crtBlockLeftBottomPos + offset;
             listOccupation[tmpNewPos.x][tmpNewPos.y] = 1;
-            Debug.Log($"====occupy {tmpNewPos}");
+            // Debug.Log($"====occupy {tmpNewPos}");
         }
 
         crtBlock.HideOutline();
