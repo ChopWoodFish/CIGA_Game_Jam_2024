@@ -12,7 +12,6 @@ public class PlayerMove : MonoBehaviour
     private bool _jumping;
     private Animator TheAnimator => GetComponent<Animator>();
 
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -20,7 +19,7 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Inst.gameStage != 2)
+        if (GameManager.Inst.gameStage != 2 || )
         {
             return;
         }

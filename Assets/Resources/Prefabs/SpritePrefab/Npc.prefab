@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7315517111487880305}
   - component: {fileID: 838101042858621706}
   - component: {fileID: 6115395028134665041}
+  - component: {fileID: 4844735919669826179}
   m_Layer: 0
   m_Name: Npc
   m_TagString: Player
@@ -111,3 +112,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4844735919669826179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4899455703755301242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2575d9ffdb83b45ac89f40d5fca89b3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bubblePoint: {fileID: 0}
+  inkJSONAsset: {fileID: 4900000, guid: 6a573446e348f4c6dbc3c06fc31dddf5, type: 3}
+  anim: {fileID: 0}
