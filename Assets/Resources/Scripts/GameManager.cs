@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections;
 using Cinemachine;
 using UnityEngine;
 
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
 
     private void OnGoToTitle(object param)
     {
+        StopAllCoroutines();
         gameStage = 0;
         
         transTitleUI.gameObject.SetActive(true);
@@ -57,12 +59,21 @@ public class GameManager : MonoBehaviour
     {
         gameStage = 2;
         
-        transGameUI.gameObject.SetActive(false);
-        transGameUI2.gameObject.SetActive(true);
+        // transGameUI.gameObject.SetActive(false);
+        // transGameUI2.gameObject.SetActive(true);
+        StartCoroutine(SwitchBlockGameUI());
 
         vcStage2.Follow = GameObject.FindWithTag("Player").transform;
         
         vcStage1.gameObject.SetActive(false);
         vcStage2.gameObject.SetActive(true);
+    }
+    
+    IEnumerator SwitchBlockGameUI()
+    {
+        yield return new WaitForSeconds(0.8f);
+
+        transGameUI.gameObject.SetActive(false);
+        transGameUI2.gameObject.SetActive(true);
     }
 }
