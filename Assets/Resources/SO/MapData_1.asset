@@ -15,3 +15,5 @@ MonoBehaviour:
   mapIndex: 1
   playerBlockPos: {x: 6, y: 0}
   passBlockPos: {x: 0, y: 10}
+  npcBlockPos1: {x: 2, y: 2}
+  npcBlockPos2: {x: 4, y: 10}

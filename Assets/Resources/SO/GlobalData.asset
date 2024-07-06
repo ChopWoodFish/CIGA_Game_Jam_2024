@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7edecb8a66fc4b2aa9c0d204a3b8f34e, type: 3}
   m_Name: GlobalData
   m_EditorClassIdentifier: 
-  playerBlock: {fileID: 8524432408059658358, guid: e2bea8c5fe11c4ded9cfa2c6bebd8f82, type: 3}
-  passBlock: {fileID: 8524432408059658358, guid: 97dea00af267244c98c53e445e4ebb70, type: 3}
+  playerBlock: {fileID: 8524432408059658358, guid: 97dea00af267244c98c53e445e4ebb70, type: 3}
+  passBlock: {fileID: 8524432408059658358, guid: e2bea8c5fe11c4ded9cfa2c6bebd8f82, type: 3}
+  chestBlock: {fileID: 8524432408059658358, guid: c6ab1ee19fa9b4ba1bb90177a5bb2bc1, type: 3}
+  npcBlock: {fileID: 8524432408059658358, guid: 2cc3b7f96568f4d79bd4d2c4c96058d3, type: 3}

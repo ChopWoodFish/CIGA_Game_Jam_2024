@@ -101,13 +101,20 @@ public class BlockGameManager : MonoBehaviour
 
     private void GenInitBlock()
     {
+        var globalData = DataManager.GetGlobalDataSO();
         var mapData = DataManager.GetMapInitBlockSO(1);
         var playerPos = mapData.playerBlockPos;
-        var playerBlock = Instantiate(DataManager.GetGlobalDataSO().playerBlock);
+        var playerBlock = Instantiate(globalData.playerBlock);
         ForceSettleBlock(playerBlock, playerPos);
         var passPos = mapData.passBlockPos;
-        var passBlock = Instantiate(DataManager.GetGlobalDataSO().passBlock);
+        var passBlock = Instantiate(globalData.passBlock);
         ForceSettleBlock(passBlock, passPos);
+        var npcPos = mapData.npcBlockPos1;
+        var npcBlock = Instantiate(globalData.npcBlock);
+        ForceSettleBlock(npcBlock, npcPos);
+        npcPos = mapData.npcBlockPos2;
+        npcBlock = Instantiate(globalData.npcBlock);
+        ForceSettleBlock(npcBlock, npcPos);
 
         playerRespawnPos = GameObject.FindWithTag("Player").transform.position;
     }
