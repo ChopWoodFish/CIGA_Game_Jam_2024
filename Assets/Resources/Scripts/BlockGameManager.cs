@@ -94,7 +94,7 @@ public class BlockGameManager : MonoBehaviour
         {
             Destroy(nodeDropItem.GetChild(i).gameObject);
         }
-        
+
         GenInitBlock();
         GenBlock();
     }
@@ -121,6 +121,7 @@ public class BlockGameManager : MonoBehaviour
 
     private void ForceSettleBlock(GameObject blockGO, Vector2Int lbPos)
     {
+        blockGO.transform.SetParent(nodeDropItem);
         Block tmpBlock = blockGO.GetComponent<Block>();
         tmpBlock.transform.localScale = Vector3.one;
         tmpBlock.transform.position = transform.position + listMapPos[lbPos.x][lbPos.y];
