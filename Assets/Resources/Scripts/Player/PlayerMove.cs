@@ -1,6 +1,3 @@
-using Mono.Cecil.Cil;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
@@ -19,7 +16,12 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Inst.gameStage != 2 || )
+        if (GameManager.Inst.gameStage != 2)
+        {
+            return;
+        }
+
+        if (TalkManager.Inst.isTalking)
         {
             return;
         }
