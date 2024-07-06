@@ -120,7 +120,7 @@ public class BlockGameManager : MonoBehaviour
 
     private void Update()
     {
-        if (crtBlock == null || isGameEnd)
+        if (GameManager.Inst.gameStage != 1)
         {
             return;
         }

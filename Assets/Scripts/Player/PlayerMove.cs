@@ -17,6 +17,11 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Inst.gameStage != 2)
+        {
+            return;
+        }
+        
         Move();
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
