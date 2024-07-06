@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
         
         IntEventSystem.Register(GameEventEnum.GameStart, OnGameStart);
         IntEventSystem.Register(GameEventEnum.GoToTitle, OnGoToTitle);
-        IntEventSystem.Register(GameEventEnum.BlockGameFinish, OnBlockGameFinish);
+        IntEventSystem.Register(GameEventEnum.PlatformGameStart, OnPlatformGameStart);
     }
 
     private void OnGameStart(object param)
@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         vcStage2.gameObject.SetActive(false);
     }
 
-    private void OnBlockGameFinish(object param)
+    private void OnPlatformGameStart(object param)
     {
         gameStage = 2;
         

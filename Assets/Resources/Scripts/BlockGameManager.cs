@@ -29,7 +29,7 @@ public class BlockGameManager : MonoBehaviour
     private Vector3 playerRespawnPos;
 
     private bool isInited;
-    private bool isGameEnd;
+    private bool isFinished;
 
     private void Awake()
     {
@@ -82,6 +82,8 @@ public class BlockGameManager : MonoBehaviour
 
     private void ResetGame()
     {
+        isFinished = false;
+        
         for (int r = 0; r < rowNum; r++)
         {
             for (int c = 0; c < colNum; c++)
@@ -171,6 +173,11 @@ public class BlockGameManager : MonoBehaviour
     private void Update()
     {
         if (GameManager.Inst.gameStage != 1)
+        {
+            return;
+        }
+
+        if (isFinished)
         {
             return;
         }
@@ -348,7 +355,7 @@ public class BlockGameManager : MonoBehaviour
                 if (isOcc == 1)
                 {
                     Debug.Log("Check game end!");
-                    isGameEnd = true;
+                    isFinished = true;
                     // crtBlock.gameObject.SetActive(false);
                     IntEventSystem.Send(GameEventEnum.BlockGameFinish, null);
                     return;

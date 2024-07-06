@@ -5,6 +5,7 @@ public enum GameEventEnum
     BlockGameStart,   // 初始化俄罗斯方块部分
     GoToTitle,  // 回到标题
     BlockGameFinish,
+    PlatformGameStart,
     
     PlayerRespawn,  // 玩家复活
 }
