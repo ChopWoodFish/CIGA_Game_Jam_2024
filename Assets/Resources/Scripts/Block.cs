@@ -35,6 +35,19 @@ public class Block : MonoBehaviour
         width += 1;
         height += 1;
         Debug.Log($"Block {ID} width: {width}, height: {height}");
+        
+        GenBlockItem();
+    }
+
+    private void GenBlockItem()
+    {
+        foreach (var itemBg in listBlockItem)
+        {
+            var itemPrefab = BlockPicker.SelectRandomBlockItem();
+            var genItem = Instantiate(itemPrefab, transform);
+            // genItem.transform.SetParent(transform);
+            genItem.transform.position = itemBg.transform.position;
+        }
     }
 
     public void HideOutline()

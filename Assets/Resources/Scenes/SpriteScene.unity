@@ -1541,6 +1541,9 @@ MonoBehaviour:
   transTitleUI: {fileID: 1675977109}
   transGame: {fileID: 636014061}
   transGameUI: {fileID: 475667392}
+  gameStage: 0
+  vcStage1: {fileID: 930490574}
+  vcStage2: {fileID: 1559363279}
 --- !u!4 &1203983194
 Transform:
   m_ObjectHideFlags: 0
@@ -1769,7 +1772,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1918494442}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 1
@@ -2317,6 +2320,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1918494442 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 166516676601283963, guid: e2bea8c5fe11c4ded9cfa2c6bebd8f82, type: 3}
+  m_PrefabInstance: {fileID: 986396553}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1944027581
 PrefabInstance:
   m_ObjectHideFlags: 0

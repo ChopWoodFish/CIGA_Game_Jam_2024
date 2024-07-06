@@ -294,6 +294,7 @@ public class BlockGameManager : MonoBehaviour
             {
                 Debug.Log("Check game end!");
                 isGameEnd = true;
+                IntEventSystem.Send(GameEventEnum.BlockGameFinish, null);
             }
         }
     }

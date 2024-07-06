@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transOutline: {fileID: 428567154957348148}
-  typeID: 0
 --- !u!1 &8749527811792576181
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,10 +189,6 @@ PrefabInstance:
     - target: {fileID: 8524432408059658358, guid: 67d19a71377e64eb5b5a43a2309187f5, type: 3}
       propertyPath: m_Name
       value: BlockItemOutline
-      objectReference: {fileID: 0}
-    - target: {fileID: 8524432408059658358, guid: 67d19a71377e64eb5b5a43a2309187f5, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67d19a71377e64eb5b5a43a2309187f5, type: 3}

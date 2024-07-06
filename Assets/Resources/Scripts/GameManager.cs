@@ -1,5 +1,6 @@
 
 using System;
+using Cinemachine;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -11,6 +12,8 @@ public class GameManager : MonoBehaviour
     public Transform transGameUI;
 
     public int gameStage;
+    public CinemachineVirtualCamera vcStage1;
+    public CinemachineVirtualCamera vcStage2;
 
     private void Start()
     {
@@ -18,6 +21,7 @@ public class GameManager : MonoBehaviour
         
         IntEventSystem.Register(GameEventEnum.GameStart, OnGameStart);
         IntEventSystem.Register(GameEventEnum.GoToTitle, OnGoToTitle);
+        IntEventSystem.Register(GameEventEnum.BlockGameFinish, OnBlockGameFinish);
     }
 
     private void OnGameStart(object param)
@@ -38,5 +42,16 @@ public class GameManager : MonoBehaviour
         transTitleUI.gameObject.SetActive(true);
         transGame.gameObject.SetActive(false);
         transGameUI.gameObject.SetActive(false);
+    }
+
+    private void OnBlockGameFinish(object param)
+    {
+        gameStage = 2;
+        
+        transGameUI.gameObject.SetActive(false);
+        
+        vcStage1.gameObject.SetActive(false);
+        vcStage2.gameObject.SetActive(true);
+        
     }
 }

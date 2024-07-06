@@ -9,4 +9,6 @@ public class BlockItem : MonoBehaviour
     {
         transOutline.gameObject.SetActive(isEnable);
     }
+    
+    
 }
