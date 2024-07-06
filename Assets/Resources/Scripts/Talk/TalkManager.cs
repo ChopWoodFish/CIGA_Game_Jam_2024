@@ -1,40 +1,22 @@
 using System;
 using UnityEngine;
 
-public class TalkManager
+public class TalkManager : MonoBehaviour
 {
-    private static TalkManager Inst;
+    public static TalkManager Inst;
 
-    private TextBubble TextBubble => GameManager.UIMan.TextBox;
+    public TextBubble TextBubble;
     private TalkingCharacter talkingCharacter;
     private InkDialogue dialogue;
 
     public bool isTalking { get; private set; }
     private Action OnReturnControl;
 
-    private PlayerInputControl input => GameManager.InputControl.input;
+    // private PlayerInputControl input => GameManager.InputControl.input;
 
-    private TalkManager(GameManager gm)
+    private void Start()
     {
-        try
-        {
-            TextBubble.Hide();
-        }
-        catch (Exception e)
-        {
-            Debug.LogError(e);
-        }
-    }
-
-    public static TalkManager CreateInst(GameManager gm)
-    {
-        if (Inst != null)
-        {
-            Inst.Discard();
-        }
-
-        Inst = new TalkManager(gm);
-        return Inst;
+        Inst = this;
     }
 
     public void OnTalk(TalkingCharacter chara, Action OnRetControl)
@@ -56,7 +38,7 @@ public class TalkManager
 
             OnReturnControl = OnRetControl;
             isTalking = true;
-            GameManager.InputControl.SetAllInputActionDisableExcept(input.Gameplay.Talk, true);
+            // GameManager.InputControl.SetAllInputActionDisableExcept(input.Gameplay.Talk, true);
             talkingCharacter = chara;
 
             dialogue = new InkDialogue(chara.inkJSONAsset);
@@ -65,11 +47,11 @@ public class TalkManager
             // textBubble.gameObject.SetActive(true);
             TextBubble.Show();
 
-            var playerX = GameManager.GetCharacter("Shangui").transform.position.x;
-            var npcX = talkingCharacter.transform.position.x;
-            var npcScale = talkingCharacter.transform.localScale;
-            npcScale.x = Mathf.Abs(npcScale.x) * (playerX < npcX ? -1 : 1);
-            talkingCharacter.transform.localScale = npcScale;
+            // var playerX = GameManager.GetCharacter("Shangui").transform.position.x;
+            // var npcX = talkingCharacter.transform.position.x;
+            // var npcScale = talkingCharacter.transform.localScale;
+            // npcScale.x = Mathf.Abs(npcScale.x) * (playerX < npcX ? -1 : 1);
+            // talkingCharacter.transform.localScale = npcScale;
 
             TalkOneSentence();
         }
@@ -112,11 +94,11 @@ public class TalkManager
     private void FinishTalk()
     {
         isTalking = false;
-        GameManager.InputControl.RestoreInputActionEnableState();
+        // GameManager.InputControl.RestoreInputActionEnableState();
         TextBubble.Hide();
         
         Debug.Log("[TalkManager] FinishTalk");
-        IntEventSystem.Send(GameEventEnum.FinishTalk, talkingCharacter);
+        // IntEventSystem.Send(GameEventEnum.FinishTalk, talkingCharacter);
 
         OnReturnControl?.Invoke();
     }

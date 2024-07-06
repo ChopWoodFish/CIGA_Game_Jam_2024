@@ -16,21 +16,13 @@ using UnityEngine;
         private Vector2 colliderParam3;
         private Action OnCheck;
         
-        private LayerMask TargetLayers;  // 一个mask是对多个layer的指示
-        // public int EnterCount;
-        // public bool Triggered
-        // {
-        //     get { return EnterCount > 0; }
-        // }
+        public LayerMask TargetLayers;  // 一个mask是对多个layer的指示
         private RaycastHit2D[] hits;
         public bool HasHit => hits.Length > 0;
 
         private void Start()
         {
-            gameObject.layer = LayerMask.NameToLayer("Checker");
-            
             coll = GetComponent<Collider2D>();
-            TargetLayers = coll.includeLayers;
             if (coll is CircleCollider2D circleCollider)
             {
                 colliderParam1 = circleCollider.radius;
@@ -71,10 +63,8 @@ using UnityEngine;
 
         private void CheckCircle()
         {
-            // bool hasHit = Physics2D.OverlapCircle(transform.position, colliderParam1, TargetLayers);
             hits = Physics2D.CircleCastAll(transform.position, colliderParam1,
                 Vector2.zero, 0, TargetLayers);
-            // Debug.Log($"hit ground {hits.Length}");
         }
 
         private void CheckBox()
@@ -82,15 +72,6 @@ using UnityEngine;
             hits = Physics2D.BoxCastAll(transform.position + (Vector3) colliderParam3,
                 new Vector2(colliderParam1, colliderParam2), 0,
                 Vector2.zero, 0, TargetLayers);
-
-            // var listHit = hits.ToList();
-            // foreach (var hit in listHit)
-            // {
-            //     if (hit.transform == transform)
-            //     {
-            //         listHit.Remove(hit);
-            //     }
-            // }
         }
 
         bool IsInLayerMask(GameObject obj, LayerMask mask)
@@ -107,24 +88,6 @@ using UnityEngine;
             }
             
             return hits[0].transform.gameObject;
-
-            // if (excludeSelf)
-            // {
-            //     foreach (var hit in hits)
-            //     {
-            //         if (hit.transform == transform)
-            //         {
-            //             continue;
-            //         }
-            //         return hit.transform.gameObject;
-            //     }   
-            // }
-            // else
-            // {
-            //     return hits[0].transform.gameObject;
-            // }
-            //
-            // return null;
         }
 
         public List<GameObject> GetAllHitThings()
