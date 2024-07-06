@@ -25,8 +25,18 @@ public class DataManager
         {
             globalSO = Resources.Load<GlobalData>("SO/GlobalData");
         }
-
-        Debug.Log($"globalSO {globalSO == null}");
+        
         return globalSO;
+    }
+
+    private static BlockItemWeightSO blockItemWeightSO;
+    public static BlockItemWeightSO GetBlockItemWeightSO()
+    {
+        if (blockItemWeightSO == null)
+        {
+            blockItemWeightSO = Resources.Load<BlockItemWeightSO>("SO/BlockItemWeightData");
+        }
+        
+        return blockItemWeightSO;
     }
 }

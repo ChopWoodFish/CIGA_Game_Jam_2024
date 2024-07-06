@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92228469453c4ca79f73a2394fcee12c, type: 3}
+  m_Name: BlockItemWeightData
+  m_EditorClassIdentifier: 
+  emptyBlockWeight: 50
+  baseBlockWeight: 30
+  trapBlockWeight: 10
+  fragileBlockWeight: 10
+  emptyBlockPrefab: {fileID: 8524432408059658358, guid: defe5f28a0bcd4491b77f09234902285, type: 3}
+  baseBlockPrefab: {fileID: 8524432408059658358, guid: b2e8daf5ccff948c4a6dbbb5cb0b5062, type: 3}
+  trapBlockPrefab: {fileID: 8524432408059658358, guid: 6237e5609bfcd45e7816dc2785828c85, type: 3}
+  fragileBlockPrefab: {fileID: 8524432408059658358, guid: ae0e0fbee09e5458ca3c73e2282d95ac, type: 3}
