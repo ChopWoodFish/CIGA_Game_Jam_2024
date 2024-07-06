@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public Transform transTitleUI;
     public Transform transGame;
     public Transform transGameUI;
+    public Transform transGameUI2;
 
     public int gameStage;
     public CinemachineVirtualCamera vcStage1;
@@ -31,6 +32,10 @@ public class GameManager : MonoBehaviour
         transTitleUI.gameObject.SetActive(false);
         transGame.gameObject.SetActive(true);
         transGameUI.gameObject.SetActive(true);
+        transGameUI2.gameObject.SetActive(false);
+        
+        vcStage1.gameObject.SetActive(true);
+        vcStage2.gameObject.SetActive(false);
         
         IntEventSystem.Send(GameEventEnum.BlockGameStart, null);
     }
@@ -42,6 +47,10 @@ public class GameManager : MonoBehaviour
         transTitleUI.gameObject.SetActive(true);
         transGame.gameObject.SetActive(false);
         transGameUI.gameObject.SetActive(false);
+        transGameUI2.gameObject.SetActive(false);
+        
+        vcStage1.gameObject.SetActive(true);
+        vcStage2.gameObject.SetActive(false);
     }
 
     private void OnBlockGameFinish(object param)
@@ -49,6 +58,7 @@ public class GameManager : MonoBehaviour
         gameStage = 2;
         
         transGameUI.gameObject.SetActive(false);
+        transGameUI2.gameObject.SetActive(true);
 
         vcStage2.Follow = GameObject.FindWithTag("Player").transform;
         
