@@ -9,51 +9,88 @@ public class BlockGameManager : MonoBehaviour
 {
     public Transform nodeBg;
     
-    // public GameObject blockPrefab;
-    private BlockPicker blockPicker;
     public Transform nodeDropItem;
     public Transform transEndLine;
 
     public float oneBlockSize = 1f;
     public float oneDropTime = 1f;
     public int endRowIndex = 5;
-    
+
+    private int rowNum;
+    private int colNum;
+
     private List<List<Vector3>> listMapPos = new List<List<Vector3>>();
-    private List<List<bool>> listAccupation = new List<List<bool>>();
+    private List<List<bool>> listOccupation = new List<List<bool>>();
     private Vector2Int crtBlockLeftBottomPos;
     private Block crtBlock;
     private float dropTimer;
 
+    private bool isInited;
     private bool isGameEnd;
 
-    private void Start()
+    private void Awake()
     {
-        blockPicker = new BlockPicker();
-        blockPicker.CollectPrefab();
-        int rowNum = nodeBg.childCount;
-        int colNum = nodeBg.GetChild(0).childCount;
+        IntEventSystem.Register(GameEventEnum.BlockGameStart, OnBlockGameStart);
+    }
+
+    private void OnBlockGameStart(object param)
+    {
+        if (!isInited)
+        {
+            Init();
+        }
+        else
+        {
+            ResetGame();
+        }
+    }
+
+    private void Init()
+    {
+        rowNum = nodeBg.childCount;
+        colNum = nodeBg.GetChild(0).childCount;
         Debug.Log($"detect map row: {rowNum}, col: {colNum}");
 
         for (int r = 0; r < rowNum; r++)
         {
             listMapPos.Add(new List<Vector3>());
-            listAccupation.Add(new List<bool>());
+            listOccupation.Add(new List<bool>());
             for (int c = 0; c < colNum; c++)
             {
                 listMapPos[r].Add(new Vector3(c * oneBlockSize + oneBlockSize / 2f, r * oneBlockSize + oneBlockSize / 2f, 0));
-                listAccupation[r].Add(false);
+                listOccupation[r].Add(false);
             }
         }
         
         // init end line
         transEndLine.position = transform.position + new Vector3(0, oneBlockSize * endRowIndex,0);
 
-        TestGenBlock();
+        isInited = true;
+        
+        GenBlock();
     }
 
-    private void TestGenBlock()
+    private void ResetGame()
     {
-        var blockPrefab = blockPicker.SelectRandomBlock();
+        for (int r = 0; r < rowNum; r++)
+        {
+            for (int c = 0; c < colNum; c++)
+            {
+                listOccupation[r][c] = false;
+            }
+        }
+
+        for (int i = nodeDropItem.childCount - 1; i >= 0; i--)
+        {
+            Destroy(nodeDropItem.GetChild(i).gameObject);
+        }
+        
+        GenBlock();
+    }
+
+    private void GenBlock()
+    {
+        var blockPrefab = BlockPicker.SelectRandomBlock();
         crtBlock = Instantiate(blockPrefab,nodeDropItem).GetComponent<Block>();
         Vector2Int mapPos = SelectGenPos();
         crtBlock.transform.localScale = Vector3.one;
@@ -120,7 +157,7 @@ public class BlockGameManager : MonoBehaviour
             else
             {
                 SettleDown();
-                TestGenBlock();
+                GenBlock();
                 ResetDropTimer();
             }
         }
@@ -160,7 +197,7 @@ public class BlockGameManager : MonoBehaviour
             {
                 return false;
             }
-            bool isOccupied = listAccupation[tmpNewPos.x][tmpNewPos.y];
+            bool isOccupied = listOccupation[tmpNewPos.x][tmpNewPos.y];
             if (isOccupied)
             {
                 return false;
@@ -194,7 +231,7 @@ public class BlockGameManager : MonoBehaviour
             {
                 return false;
             }
-            bool isOccupied = listAccupation[tmpNewPos.x][tmpNewPos.y];
+            bool isOccupied = listOccupation[tmpNewPos.x][tmpNewPos.y];
             if (isOccupied)
             {
                 return false;
@@ -240,7 +277,7 @@ public class BlockGameManager : MonoBehaviour
         {
             var offset = crtBlock.localPosOffset[i];
             Vector2Int tmpNewPos = crtBlockLeftBottomPos + offset;
-            listAccupation[tmpNewPos.x][tmpNewPos.y] = true;
+            listOccupation[tmpNewPos.x][tmpNewPos.y] = true;
             Debug.Log($"====occupy {tmpNewPos}");
         }
 
@@ -250,7 +287,7 @@ public class BlockGameManager : MonoBehaviour
 
     private void CheckBlockGameEnd()
     {
-        var listOcc = listAccupation[endRowIndex];
+        var listOcc = listOccupation[endRowIndex];
         foreach (var isOcc in listOcc)
         {
             if (isOcc)

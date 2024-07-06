@@ -7,6 +7,7 @@ public class Title : MonoBehaviour
     public Button btnStart;         // 开始按钮
     public Button btnCredits;       // 制作成员按钮
     public Transform transCredits;  // 制作成员界面
+    public Button btnEixt;          // 退出游戏按钮
     public Button btnReturn;        // 返回标题界面按钮
 
     private void Awake()
@@ -19,14 +20,13 @@ public class Title : MonoBehaviour
         btnStart.onClick.AddListener(OnBtnStartClick);
         btnCredits.onClick.AddListener(OnBtnCreditClick);
         btnReturn.onClick.AddListener(OnBtnReturnClick);
+        btnEixt.onClick.AddListener(OnBtnExitClick);
     }
 
     private void OnBtnStartClick()
     {
         Debug.Log("Game Start");
-        // todo send game start event
-        
-        
+        IntEventSystem.Send(GameEventEnum.GameStart, null);
     }
 
     private void OnBtnCreditClick()
@@ -37,5 +37,14 @@ public class Title : MonoBehaviour
     private void OnBtnReturnClick()
     {
         transCredits.gameObject.SetActive(false);
+    }
+
+    private void OnBtnExitClick()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 }

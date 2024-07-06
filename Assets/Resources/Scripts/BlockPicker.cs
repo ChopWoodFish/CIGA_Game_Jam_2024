@@ -5,16 +5,20 @@ using UnityEngine;
 
 public class BlockPicker
 {
-    private List<GameObject> listBlockPrefab = new List<GameObject>();
+    private static List<GameObject> listBlockPrefab = new List<GameObject>();
 
-    public void CollectPrefab()
+    public static void CollectPrefab()
     {
-        listBlockPrefab = Resources.LoadAll<GameObject>("Prefabs/SpritePrefab/Block").ToList();
-        Debug.Log($"block prefab count: {listBlockPrefab.Count}");
+        if (listBlockPrefab.Count == 0)
+        {
+            listBlockPrefab = Resources.LoadAll<GameObject>("Prefabs/SpritePrefab/Block").ToList();
+            Debug.Log($"block prefab count: {listBlockPrefab.Count}");
+        }
     }
 
-    public GameObject SelectRandomBlock()
+    public static GameObject SelectRandomBlock()
     {
+        CollectPrefab();
         int index = Random.Range(0, listBlockPrefab.Count);
         return listBlockPrefab[index];
     }
