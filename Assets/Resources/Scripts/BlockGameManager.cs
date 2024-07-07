@@ -30,6 +30,7 @@ public class BlockGameManager : MonoBehaviour
 
     private bool isInited;
     private bool isFinished;
+    private bool hasTuna;
 
     private void Awake()
     {
@@ -40,6 +41,7 @@ public class BlockGameManager : MonoBehaviour
             player.gameObject.SetActive(false);
             StartCoroutine(PlayerDieAndRespawn(player));
         });
+        IntEventSystem.Register(GameEventEnum.GetTuna, (param) => { hasTuna = true;});
     }
 
     private void OnBlockGameStart(object param)
@@ -83,6 +85,9 @@ public class BlockGameManager : MonoBehaviour
     private void ResetGame()
     {
         isFinished = false;
+        nextGenBlockIndex = 1;
+        hasTuna = false;
+        listReadyGenBlockPrefab.Clear();
         
         for (int r = 0; r < rowNum; r++)
         {
@@ -141,6 +146,9 @@ public class BlockGameManager : MonoBehaviour
         tmpBlock.HideOutline();
     }
 
+    private int nextGenBlockIndex;
+    private const int CanBlockIndex = 4;
+    private const int PreviewBlockCount = 2;
     private List<GameObject> listReadyGenBlockPrefab = new List<GameObject>();
     private void GenBlock()
     {
@@ -148,12 +156,28 @@ public class BlockGameManager : MonoBehaviour
         {
             for (int i = 0; i < 3; i++)
             {
-                listReadyGenBlockPrefab.Add(BlockPicker.SelectRandomBlock());
+                nextGenBlockIndex++;
+                if (nextGenBlockIndex == CanBlockIndex)
+                {
+                    listReadyGenBlockPrefab.Add(BlockPicker.SelectCanBlock());
+                }
+                else
+                {
+                    listReadyGenBlockPrefab.Add(BlockPicker.SelectRandomBlock());   
+                }
             }
         }
         else
         {
-            listReadyGenBlockPrefab.Add(BlockPicker.SelectRandomBlock());
+            nextGenBlockIndex++;
+            if (nextGenBlockIndex == CanBlockIndex)
+            {
+                listReadyGenBlockPrefab.Add(BlockPicker.SelectCanBlock());
+            }
+            else
+            {
+                listReadyGenBlockPrefab.Add(BlockPicker.SelectRandomBlock());   
+            }
         }
         
         Debug.Log($"gen block {listReadyGenBlockPrefab[0].name}, {listReadyGenBlockPrefab[1].name}, {listReadyGenBlockPrefab[2].name}");

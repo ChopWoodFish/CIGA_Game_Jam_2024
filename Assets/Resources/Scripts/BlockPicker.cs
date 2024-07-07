@@ -29,6 +29,11 @@ public class BlockPicker
         return listBlockPrefab[index];
     }
 
+    public static GameObject SelectCanBlock()
+    {
+        return DataManager.GetGlobalDataSO().canBlock;
+    }
+
     public static GameObject SelectRandomBlockItem()
     {
         return DataManager.GetBlockItemWeightSO().GetRandomBlockPrefab();

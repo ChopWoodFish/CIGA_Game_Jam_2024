@@ -9,4 +9,5 @@ public enum GameEventEnum
     RefreshBlockPreview,
     PlayerRespawn,  // 玩家复活
     GoToNextMap,
+    GetTuna,
 }

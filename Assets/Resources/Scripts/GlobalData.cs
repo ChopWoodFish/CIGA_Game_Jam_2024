@@ -5,6 +5,6 @@ public class GlobalData : ScriptableObject
 {
     public GameObject playerBlock;
     public GameObject passBlock;
-    public GameObject chestBlock;
+    public GameObject canBlock;
     public GameObject npcBlock;
 }

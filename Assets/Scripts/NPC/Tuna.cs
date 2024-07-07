@@ -15,7 +15,7 @@ public class Tuna : MonoBehaviour
         {
             SoundManager.instance.PlaytunaSound();
             getTuna();
-            Debug.Log("Íæ¼ÒÒÑ¾­»ñÈ¡ÁË¹ŞÍ·£¡");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½È¡ï¿½Ë¹ï¿½Í·ï¿½ï¿½");
         }
 
     }
@@ -24,8 +24,9 @@ public class Tuna : MonoBehaviour
     {
 
         hasTuna = true;
+        IntEventSystem.Send(GameEventEnum.GetTuna, null);
 
-        // ÕâÀï¿ÉÒÔÌí¼Ó¸ü¶àÂß¼­£¬±ÈÈç¸üĞÂÓÎÏ·UI£¬Ôö¼Ó·ÖÊıµÈ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¸ï¿½ï¿½ï¿½ï¿½ß¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·UIï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½ï¿½ï¿½
 
         gameObject.SetActive(false);
         
