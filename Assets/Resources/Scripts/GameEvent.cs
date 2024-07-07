@@ -10,4 +10,5 @@ public enum GameEventEnum
     PlayerRespawn,  // 玩家复活
     GoToNextMap,
     GetTuna,
+    FinishPlayVideo,
 }
