@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class FragilePlatform : MonoBehaviour
 {
-    public float disappearDelay = 2.0f; // Íæ¼ÒÕ¾ÉÏÈ¥ºóÏûÊ§Ç°µÄÑÓ³ÙÊ±¼ä
-    public float reappearDelay = 2.0f; // ÏûÊ§ºóÖØÐÂ³öÏÖµÄÑÓ³ÙÊ±¼ä
+    public float disappearDelay = 2.0f; // ï¿½ï¿½ï¿½Õ¾ï¿½ï¿½È¥ï¿½ï¿½ï¿½ï¿½Ê§Ç°ï¿½ï¿½ï¿½Ó³ï¿½Ê±ï¿½ï¿½
+    public float reappearDelay = 2.0f; // ï¿½ï¿½Ê§ï¿½ï¿½ï¿½ï¿½ï¿½Â³ï¿½ï¿½Öµï¿½ï¿½Ó³ï¿½Ê±ï¿½ï¿½
 
     private Collider2D platformCollider;
     private SpriteRenderer platformRenderer;
     private bool playerOnPlatform;
+    private Animator anim;
 
     void Start()
     {
+        anim = transform.parent.GetComponent<Animator>();
         platformCollider = GetComponent<Collider2D>();
         platformRenderer = GetComponent<SpriteRenderer>();
     }
@@ -38,16 +40,18 @@ public class FragilePlatform : MonoBehaviour
 
     void DisappearPlatform()
     {
-        //ÆäËûÂß¼­£¬±ÈÈç²¥·Å¶¯»­
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ç²¥ï¿½Å¶ï¿½ï¿½ï¿½
         //...
         platformCollider.enabled = false;
-        platformRenderer.enabled = false;
+        // platformRenderer.enabled = false;
         Invoke("ReappearPlatform", reappearDelay);
+        anim.Play("Break");
     }
 
     void ReappearPlatform()
     {
         platformCollider.enabled = true;
-        platformRenderer.enabled = true;
+        // platformRenderer.enabled = true;
+        anim.Play("Restore");
     }
 }
