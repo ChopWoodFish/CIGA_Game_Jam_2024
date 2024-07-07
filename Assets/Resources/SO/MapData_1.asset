@@ -16,4 +16,6 @@ MonoBehaviour:
   playerBlockPos: {x: 6, y: 0}
   passBlockPos: {x: 0, y: 10}
   npcBlockPos1: {x: 2, y: 2}
+  npcBlockPrefab1: {fileID: 5658884706974906553, guid: 0b5b66cb76de74657a5fe32d8e3e50ae, type: 3}
   npcBlockPos2: {x: 4, y: 10}
+  npcBlockPrefab2: {fileID: 5658884706974906553, guid: 0b5b66cb76de74657a5fe32d8e3e50ae, type: 3}

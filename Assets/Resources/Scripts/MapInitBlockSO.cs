@@ -8,5 +8,7 @@ public class MapInitBlockSO : ScriptableObject
     public Vector2Int playerBlockPos;
     public Vector2Int passBlockPos;
     public Vector2Int npcBlockPos1;
+    public GameObject npcBlockPrefab1;
     public Vector2Int npcBlockPos2;
+    public GameObject npcBlockPrefab2;
 }
