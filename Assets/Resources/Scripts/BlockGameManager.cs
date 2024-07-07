@@ -15,7 +15,7 @@ public class BlockGameManager : MonoBehaviour
 
     public float oneBlockSize = 1f;
     public float oneDropTime = 1f;
-    public int endRowIndex = 5;
+    public int endRowIndex = 6;
 
     private int rowNum;
     private int colNum;
@@ -236,7 +236,11 @@ public class BlockGameManager : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            ForcePass();
+        }
+        else if (Input.GetKeyDown(KeyCode.A))
         {
             bool canMove = CheckCanMoveHorizontally(true);
             if (canMove)
@@ -275,8 +279,12 @@ public class BlockGameManager : MonoBehaviour
                 ResetDropTimer();
             }
         }
-        
-        
+    }
+
+    private void ForcePass()
+    {
+        Debug.Log("Force Pass");
+        IntEventSystem.Send(GameEventEnum.GoToNextMap,null);
     }
 
     private bool CheckCanMoveHorizontally(bool isLeft)

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64f3165ee87147cfbf5d079063dbe4a8, type: 3}
-  m_Name: MapData_2
+  m_Name: MapData_4
   m_EditorClassIdentifier: 
-  mapIndex: 2
-  playerBlockPos: {x: 0, y: 0}
-  passBlockPos: {x: 5, y: 11}
-  npcBlockPos1: {x: 2, y: 12}
+  mapIndex: 3
+  playerBlockPos: {x: 2, y: 11}
+  passBlockPos: {x: 2, y: 0}
+  npcBlockPos1: {x: 2, y: 2}
   npcBlockPrefab1: {fileID: 0}
-  npcBlockPos2: {x: 7, y: 3}
+  npcBlockPos2: {x: 0, y: 0}
   npcBlockPrefab2: {fileID: 0}
