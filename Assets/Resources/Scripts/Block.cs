@@ -9,6 +9,7 @@ public class Block : MonoBehaviour
     public int ID;
     public int width;
     public int height;
+    public bool isFixedBlock;
 
     public List<BlockItem> listBlockItem = new List<BlockItem>();
     public List<Vector2Int> localPosOffset = new List<Vector2Int>();

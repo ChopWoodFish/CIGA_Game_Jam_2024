@@ -86,6 +86,7 @@ MonoBehaviour:
   ID: 0
   width: 0
   height: 0
+  isFixedBlock: 1
   listBlockItem: []
   localPosOffset: []
 --- !u!1001 &123283958360971266

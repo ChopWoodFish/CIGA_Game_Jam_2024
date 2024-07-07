@@ -194,7 +194,10 @@ public class BlockGameManager : MonoBehaviour
         var blockPrefab = listReadyGenBlockPrefab[0];
         listReadyGenBlockPrefab.RemoveAt(0);
         crtBlock = Instantiate(blockPrefab,nodeDropItem).GetComponent<Block>();
-        crtBlock.GenBlockItem();
+        if (!crtBlock.isFixedBlock)
+        {
+            crtBlock.GenBlockItem();   
+        }
         Vector2Int mapPos = SelectGenPos();
         crtBlock.transform.localScale = Vector3.one;
         crtBlock.transform.position = transform.position + listMapPos[mapPos.x][mapPos.y];
