@@ -234,9 +234,9 @@ public class BlockGameManager : MonoBehaviour
             else
             {
                 SettleDown();
-                if (GameManager.Inst.gameStage == 1)
+                if (!isFinished)
                 {
-                    GenBlock();   
+                    GenBlock();
                 }
                 ResetDropTimer();
             }
