@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: MapData_4
   m_EditorClassIdentifier: 
   mapIndex: 4
-  playerBlockPos: {x: 2, y: 11}
-  passBlockPos: {x: 2, y: 0}
+  playerBlockPos: {x: 2, y: 0}
+  passBlockPos: {x: 2, y: 11}
   npcBlockPos1: {x: 2, y: 2}
   npcBlockPrefab1: {fileID: 0}
   npcBlockPos2: {x: 0, y: 0}
