@@ -116,12 +116,19 @@ public class BlockGameManager : MonoBehaviour
         var passPos = mapData.passBlockPos;
         var passBlock = Instantiate(globalData.passBlock);
         ForceSettleBlock(passBlock, passPos);
-        var npcPos = mapData.npcBlockPos1;
-        var npcBlock = Instantiate(mapData.npcBlockPrefab1);
-        ForceSettleBlock(npcBlock, npcPos);
-        npcPos = mapData.npcBlockPos2;
-        npcBlock = Instantiate(mapData.npcBlockPrefab2);
-        ForceSettleBlock(npcBlock, npcPos);
+        if (mapData.npcBlockPrefab1 != null)
+        {
+            var npcPos = mapData.npcBlockPos1;
+            var npcBlock = Instantiate(mapData.npcBlockPrefab1);
+            ForceSettleBlock(npcBlock, npcPos);
+        }
+
+        if (mapData.npcBlockPrefab2 != null)
+        {
+            var npcPos = mapData.npcBlockPos2;
+            var npcBlock = Instantiate(mapData.npcBlockPrefab2);
+            ForceSettleBlock(npcBlock, npcPos);
+        }
 
         // playerRespawnPos = GameObject.FindWithTag("Player").transform.position;
         playerRespawnPos = playerBlock.transform.position + new Vector3(0.5f, 0.5f);
