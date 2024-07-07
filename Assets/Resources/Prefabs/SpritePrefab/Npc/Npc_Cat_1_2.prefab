@@ -22,7 +22,7 @@ PrefabInstance:
     - target: {fileID: 4844735919669826179, guid: f8f963c3d85bf4d478c53367c4fbeacb, type: 3}
       propertyPath: tunaDialogue
       value: 
-      objectReference: {fileID: 4900000, guid: 6a573446e348f4c6dbc3c06fc31dddf5, type: 3}
+      objectReference: {fileID: 4900000, guid: 33c2b40657e0b4f658a3a8e70d47f76f, type: 3}
     - target: {fileID: 4844735919669826179, guid: f8f963c3d85bf4d478c53367c4fbeacb, type: 3}
       propertyPath: listLihui.Array.size
       value: 1
