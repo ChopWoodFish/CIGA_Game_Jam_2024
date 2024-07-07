@@ -24,12 +24,11 @@ public class bgmManager : MonoBehaviour
         }
     }
 
-    void Start()
+ /*   void Start()
     {
         PlaystartBgm();
     }
-
-    // Update is called once per frame
+ */
     public void PlaystartBgm()
     {
         audioSource.clip = startBgm;
