@@ -9,6 +9,7 @@ public class BlockGameUI : MonoBehaviour
     public Button btnReturn;
     public Button btnSetting;
     public Button btnStartPlatform;
+    public Button btnRestart;
 
     public List<PreviewSlot> listPreviewSlot = new List<PreviewSlot>();
 
@@ -25,6 +26,7 @@ public class BlockGameUI : MonoBehaviour
         btnReturn.onClick.AddListener(OnBtnReturnClick);
         btnSetting.onClick.AddListener(OnBtnSettingClick);
         btnStartPlatform.onClick.AddListener(OnBtnStartPlatform);
+        btnRestart.onClick.AddListener(OnBtnRestartClick);
     }
 
     private void OnBtnReturnClick()
@@ -35,6 +37,11 @@ public class BlockGameUI : MonoBehaviour
     private void OnBtnSettingClick()
     {
         
+    }
+
+    private void OnBtnRestartClick()
+    {
+        IntEventSystem.Send(GameEventEnum.BlockGameStart, null);
     }
     
     private void OnBtnStartPlatform()
