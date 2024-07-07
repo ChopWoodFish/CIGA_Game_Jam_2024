@@ -210,37 +210,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 887833636652290319}
     m_Modifications:
-    - target: {fileID: 2312040825389149198, guid: f9611177500b5854caf6f6e8f5fa658c, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2312040825389149198, guid: f9611177500b5854caf6f6e8f5fa658c, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2312040825389149198, guid: f9611177500b5854caf6f6e8f5fa658c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2312040825389149198, guid: f9611177500b5854caf6f6e8f5fa658c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5445725484748595856, guid: f9611177500b5854caf6f6e8f5fa658c, type: 3}
       propertyPath: m_Name
       value: TrapPlatform
-      objectReference: {fileID: 0}
-    - target: {fileID: 5776420409141140784, guid: f9611177500b5854caf6f6e8f5fa658c, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5776420409141140784, guid: f9611177500b5854caf6f6e8f5fa658c, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5776420409141140784, guid: f9611177500b5854caf6f6e8f5fa658c, type: 3}
-      propertyPath: m_Color.r
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5776420409141140784, guid: f9611177500b5854caf6f6e8f5fa658c, type: 3}
       propertyPath: m_SortingLayer
@@ -248,7 +220,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5776420409141140784, guid: f9611177500b5854caf6f6e8f5fa658c, type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5776420409141140784, guid: f9611177500b5854caf6f6e8f5fa658c, type: 3}
       propertyPath: m_SortingLayerID
@@ -260,11 +232,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8339807247187024562, guid: f9611177500b5854caf6f6e8f5fa658c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.85113835
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 8339807247187024562, guid: f9611177500b5854caf6f6e8f5fa658c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.218541
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 8339807247187024562, guid: f9611177500b5854caf6f6e8f5fa658c, type: 3}
       propertyPath: m_LocalPosition.x
