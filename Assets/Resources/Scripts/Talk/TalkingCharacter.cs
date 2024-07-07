@@ -17,7 +17,7 @@ using UnityEngine;
 
         public TextAsset GetDialogueAsset()
         {
-            if (hasTuna)
+            if (hasTuna && tunaDialogue != null)
             {
                 return tunaDialogue;
             }

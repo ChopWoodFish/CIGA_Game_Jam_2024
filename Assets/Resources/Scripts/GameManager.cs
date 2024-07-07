@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
         vcStage1.gameObject.SetActive(true);
         vcStage2.gameObject.SetActive(false);
         
+        bgmManager.instance.PlayinBgm();
+        
         IntEventSystem.Send(GameEventEnum.BlockGameStart, null);
     }
 
@@ -56,6 +58,8 @@ public class GameManager : MonoBehaviour
         
         vcStage1.gameObject.SetActive(true);
         vcStage2.gameObject.SetActive(false);
+        
+        bgmManager.instance.PlaystartBgm();
     }
 
     private void OnPlatformGameStart(object param)
