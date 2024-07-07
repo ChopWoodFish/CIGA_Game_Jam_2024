@@ -8,7 +8,9 @@ using UnityEngine.UI;
 
 public class TextBubble : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI tmpName;
     [SerializeField] private TextMeshProUGUI tmpContent;
+    [SerializeField] private Image imgChara;
     [SerializeField] private List<Button> listBtnChoice = new List<Button>();
     private Transform point;
 
@@ -54,6 +56,24 @@ public class TextBubble : MonoBehaviour
             btnChoice.onClick.RemoveAllListeners();
             btnChoice.onClick.AddListener(() => { TalkManager.Inst.ChooseChoice(index); });
             btnChoice.gameObject.SetActive(true);
+        }
+    }
+
+    public void SetName(string name)
+    {
+        tmpName.text = name;
+    }
+
+    public void SetImgChara(Sprite spr)
+    {
+        if (spr == null)
+        {
+            imgChara.gameObject.SetActive(false);
+        }
+        else
+        {
+            imgChara.gameObject.SetActive(true);
+            imgChara.sprite = spr;
         }
     }
 

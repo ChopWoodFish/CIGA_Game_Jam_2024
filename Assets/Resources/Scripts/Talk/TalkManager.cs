@@ -66,6 +66,7 @@ public class TalkManager : MonoBehaviour
         TalkOneSentence();
     }
 
+    private string crtCharaName;
     private void TalkOneSentence()
     {
         string content = dialogue.GetNextSentence();
@@ -87,6 +88,38 @@ public class TalkManager : MonoBehaviour
         else
         {
             TextBubble.SetBubbleContent(content, dialogue.listCrtChoice);
+            if (dialogue.crtTag.ContainsKey("chara"))
+            {
+                crtCharaName = dialogue.crtTag["chara"];
+                TextBubble.SetName(crtCharaName);
+            }
+
+            if (crtCharaName == "旁白")
+            {
+                TextBubble.SetImgChara(null);
+            }
+            else if (crtCharaName == "小女孩")
+            {
+                TextBubble.SetImgChara(DataManager.GetGlobalDataSO().playerLihui);
+            }
+            else
+            {
+                TextBubble.SetImgChara(talkingCharacter.listLihui[0]);
+                // if (dialogue.crtTag.ContainsKey("image"))
+                // {
+                    // var sprName = crtCharaName;
+                    // int index = talkingCharacter.listLihuiName.IndexOf(sprName);
+                    // if (index >= 0)
+                    // {
+                    //     var spr = talkingCharacter.listLihui[index];
+                    //     TextBubble.SetImgChara(spr);
+                    // }
+                // }
+                // else
+                // {
+                //     TextBubble.SetImgChara(null);
+                // }
+            }
             talkingCharacter.ProcessTag(dialogue.crtTag);
         }
     }

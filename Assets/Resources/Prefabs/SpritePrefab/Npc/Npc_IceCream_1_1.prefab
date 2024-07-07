@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1167981466, guid: 99428973832e44ef98bb9ca067f6a099, type: 3}
+    - target: {fileID: 4844735919669826179, guid: f8f963c3d85bf4d478c53367c4fbeacb, type: 3}
+      propertyPath: inkJSONAsset
+      value: 
+      objectReference: {fileID: 4900000, guid: d5926ea188fbc475ca4d5db4f9fdf676, type: 3}
     - target: {fileID: 4899455703755301242, guid: f8f963c3d85bf4d478c53367c4fbeacb, type: 3}
       propertyPath: m_Name
       value: Npc_IceCream_1_1

@@ -30,7 +30,7 @@ using UnityEngine;
                 dictTagNameContent[tagName] = tagContent;
             }
             
-            // PrintAllTags();
+            PrintAllTags();
         }
 
         private void PrintAllTags()

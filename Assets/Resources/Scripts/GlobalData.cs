@@ -7,4 +7,5 @@ public class GlobalData : ScriptableObject
     public GameObject passBlock;
     public GameObject canBlock;
     public GameObject npcBlock;
+    public Sprite playerLihui;
 }

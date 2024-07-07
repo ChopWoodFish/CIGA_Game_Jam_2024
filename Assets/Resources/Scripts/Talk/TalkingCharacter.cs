@@ -7,6 +7,8 @@ using UnityEngine;
     {
         public Transform bubblePoint;
         public TextAsset inkJSONAsset;
+        public List<string> listLihuiName = new List<string>();
+        public List<Sprite> listLihui = new List<Sprite>();
 
         [SerializeField] private Animator anim;
 

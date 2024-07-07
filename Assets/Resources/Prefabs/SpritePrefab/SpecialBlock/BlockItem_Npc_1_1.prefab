@@ -51,6 +51,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2306586758588515489, guid: bd54e7eb8010d437ba756d7520a6cda3, type: 3}
+      propertyPath: listLihui.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2306586758588515489, guid: bd54e7eb8010d437ba756d7520a6cda3, type: 3}
+      propertyPath: listLihui.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 61ec59a8f14c44338b663d774083ab4b, type: 3}
+    - target: {fileID: 2306586758588515489, guid: bd54e7eb8010d437ba756d7520a6cda3, type: 3}
+      propertyPath: listLihuiName.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2306586758588515489, guid: bd54e7eb8010d437ba756d7520a6cda3, type: 3}
+      propertyPath: listLihuiName.Array.data[0]
+      value: default
+      objectReference: {fileID: 0}
     - target: {fileID: 2361870583386322776, guid: bd54e7eb8010d437ba756d7520a6cda3, type: 3}
       propertyPath: m_Name
       value: Npc_IceCream_1_1
