@@ -9,13 +9,26 @@ using UnityEngine;
         public TextAsset inkJSONAsset;
         public List<string> listLihuiName = new List<string>();
         public List<Sprite> listLihui = new List<Sprite>();
+        public TextAsset tunaDialogue;
 
         [SerializeField] private Animator anim;
 
+        private bool hasTuna;
+
+        public TextAsset GetDialogueAsset()
+        {
+            if (hasTuna)
+            {
+                return tunaDialogue;
+            }
+
+            return inkJSONAsset;
+        }
+        
         private void Start()
         {
             anim = transform.GetComponentInChildren<Animator>();
-            
+            IntEventSystem.Register(GameEventEnum.GetTuna, (param) => hasTuna = true);
         }
 
         public void ProcessTag(Dictionary<string, string> dictTag)

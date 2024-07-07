@@ -15,6 +15,30 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: eddafd69d079f40afa516493fc4cb409, type: 2}
+    - target: {fileID: 4844735919669826179, guid: f8f963c3d85bf4d478c53367c4fbeacb, type: 3}
+      propertyPath: inkJSONAsset
+      value: 
+      objectReference: {fileID: 4900000, guid: 3ece06df311ef4b029eea012779e275e, type: 3}
+    - target: {fileID: 4844735919669826179, guid: f8f963c3d85bf4d478c53367c4fbeacb, type: 3}
+      propertyPath: tunaDialogue
+      value: 
+      objectReference: {fileID: 4900000, guid: 33c2b40657e0b4f658a3a8e70d47f76f, type: 3}
+    - target: {fileID: 4844735919669826179, guid: f8f963c3d85bf4d478c53367c4fbeacb, type: 3}
+      propertyPath: listLihui.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4844735919669826179, guid: f8f963c3d85bf4d478c53367c4fbeacb, type: 3}
+      propertyPath: listLihui.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 94aea9f9272574aac874d180782831ed, type: 3}
+    - target: {fileID: 4844735919669826179, guid: f8f963c3d85bf4d478c53367c4fbeacb, type: 3}
+      propertyPath: listLihuiName.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4844735919669826179, guid: f8f963c3d85bf4d478c53367c4fbeacb, type: 3}
+      propertyPath: listLihuiName.Array.data[0]
+      value: default
+      objectReference: {fileID: 0}
     - target: {fileID: 4899455703755301242, guid: f8f963c3d85bf4d478c53367c4fbeacb, type: 3}
       propertyPath: m_Name
       value: Npc_Cat_1_2

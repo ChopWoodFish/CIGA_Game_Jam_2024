@@ -41,7 +41,7 @@ public class TalkManager : MonoBehaviour
             // GameManager.InputControl.SetAllInputActionDisableExcept(input.Gameplay.Talk, true);
             talkingCharacter = chara;
 
-            dialogue = new InkDialogue(chara.inkJSONAsset);
+            dialogue = new InkDialogue(chara.GetDialogueAsset());
 
             // Inst.textBubble.SetBubblePos(Inst.talkingCharacter.bubblePoint); // 对话框位置暂时固定
             // textBubble.gameObject.SetActive(true);
