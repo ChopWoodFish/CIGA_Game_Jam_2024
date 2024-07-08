@@ -7,7 +7,7 @@ public class VideoUI : MonoBehaviour
 {
     [SerializeField] private VideoPlayer videoPlayer;
     [SerializeField] private Button btnSkip;
-    public VideoClip videoClip;
+    // public VideoClip videoClip;
 
     private bool isPlaying;
     private bool isPrepared;
@@ -24,8 +24,8 @@ public class VideoUI : MonoBehaviour
 
     public void SetVideo()
     {
-        videoPlayer.clip = videoClip;
-        Debug.Log($"VideoUI: set clip {videoPlayer.clip.name}, length {videoPlayer.clip.length}");
+        // videoPlayer.clip = videoClip;
+        // Debug.Log($"VideoUI: set clip {videoPlayer.clip.name}, length {videoPlayer.clip.length}");
         videoPlayer.prepareCompleted += (p) =>
         {
             Debug.Log($"VideoUI: player prepare complete, isTriggered: {isTriggered}");
@@ -55,7 +55,7 @@ public class VideoUI : MonoBehaviour
         // updateComp = new UpdateComp();
         // updateComp.ScheduleAction(LogTime, 1f, -1);
         videoPlayer.Play();
-        timer = (float) videoPlayer.clip.length;
+        timer = 8f;
     }
 
     private void OnSkip()
