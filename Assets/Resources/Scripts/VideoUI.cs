@@ -15,7 +15,7 @@ public class VideoUI : MonoBehaviour
 
     // private UpdateComp updateComp;
 
-    public void Init()
+    public void Start()
     {
         // base.Init();
         btnSkip.onClick.AddListener(OnSkip);
@@ -56,7 +56,7 @@ public class VideoUI : MonoBehaviour
         // updateComp = new UpdateComp();
         // updateComp.ScheduleAction(LogTime, 1f, -1);
         videoPlayer.Play();
-        timer = 8f;
+        // timer = 8f;
     }
 
     private void OnSkip()
@@ -64,24 +64,26 @@ public class VideoUI : MonoBehaviour
         if (isPlaying)
         {
             Debug.Log($"VideoUI: skip");
-            videoPlayer.time = videoPlayer.clip.length;
+            // videoPlayer.time = videoPlayer.clip.length;
+            videoPlayer.time = 7.5f;
+            // timer = 0;
         }
     }
 
-    private float timer;
-    private void Update()
-    {
-        if (!isPlaying)
-        {
-            return;
-        }
-        timer -= Time.deltaTime;
-        Debug.Log(timer);
-        if (timer < 0)
-        {
-            IntEventSystem.Send(GameEventEnum.FinishPlayVideo, null);
-        }
-    }
+    // private float timer;
+    // private void Update()
+    // {
+    //     if (!isPlaying)
+    //     {
+    //         return;
+    //     }
+    //     timer -= Time.deltaTime;
+    //     // Debug.Log(timer);
+    //     if (timer < 0)
+    //     {
+    //         IntEventSystem.Send(GameEventEnum.FinishPlayVideo, null);
+    //     }
+    // }
 
     private void LogTime()
     {
@@ -93,7 +95,7 @@ public class VideoUI : MonoBehaviour
         // updateComp.StopSchedule(LogTime);
         isPlaying = false;
         Debug.Log($"VideoUI: play finish");
-        // IntEventSystem.Send(GameEventEnum.FinishPlayVideo, null);
+        IntEventSystem.Send(GameEventEnum.FinishPlayVideo, null);
     }
 
     // private void OnDestroy()

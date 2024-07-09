@@ -17,3 +17,7 @@ MonoBehaviour:
   canBlock: {fileID: 8524432408059658358, guid: c6ab1ee19fa9b4ba1bb90177a5bb2bc1, type: 3}
   npcBlock: {fileID: 8524432408059658358, guid: 2cc3b7f96568f4d79bd4d2c4c96058d3, type: 3}
   playerLihui: {fileID: 21300000, guid: b52a4529ae32f4bd08ee194d6c36bf74, type: 3}
+  deathPrefab: {fileID: 900114357244607862, guid: 7b9820485008346879e0408f5dac3540, type: 3}
+  deathDialogue1: {fileID: 4900000, guid: a076681fc75424d098f6fed846269f1f, type: 3}
+  endCutsceneDialogue: {fileID: 4900000, guid: 46318000f3a5f442fbe0be4ed7f7a6de, type: 3}
+  deathDialogue2: {fileID: 4900000, guid: 3ed0e777d28214321a52aa1c0637c567, type: 3}

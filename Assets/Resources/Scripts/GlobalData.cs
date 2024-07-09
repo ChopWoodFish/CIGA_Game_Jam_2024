@@ -8,4 +8,8 @@ public class GlobalData : ScriptableObject
     public GameObject canBlock;
     public GameObject npcBlock;
     public Sprite playerLihui;
+    public GameObject deathPrefab;
+    public TextAsset deathDialogue1;
+    public TextAsset endCutsceneDialogue;
+    public TextAsset deathDialogue2;
 }

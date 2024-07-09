@@ -19,3 +19,4 @@ MonoBehaviour:
   npcBlockPrefab1: {fileID: 9100741339804677175, guid: 11c23572ffa0e4782abfcb372f683527, type: 3}
   npcBlockPos2: {x: 6, y: 3}
   npcBlockPrefab2: {fileID: 7436048325922371148, guid: 39d26effc46d547148120e18818ea17e, type: 3}
+  cutsceneText: {fileID: 4900000, guid: 3ff979089695247a1bae0dfc263a42f7, type: 3}

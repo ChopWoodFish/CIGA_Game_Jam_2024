@@ -11,4 +11,5 @@ public class MapInitBlockSO : ScriptableObject
     public GameObject npcBlockPrefab1;
     public Vector2Int npcBlockPos2;
     public GameObject npcBlockPrefab2;
+    public TextAsset cutsceneText;
 }

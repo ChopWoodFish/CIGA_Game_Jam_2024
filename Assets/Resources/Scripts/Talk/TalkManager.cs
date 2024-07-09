@@ -1,16 +1,19 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TalkManager : MonoBehaviour
 {
     public static TalkManager Inst;
 
-    public TextBubble TextBubble;
+    public TextBubble textBubble;
+    public TextBubble cutsceneTextBubble;
     private TalkingCharacter talkingCharacter;
     private InkDialogue dialogue;
 
     public bool isTalking { get; private set; }
     private Action OnReturnControl;
+    private TextBubble crtTextBubble;
 
     // private PlayerInputControl input => GameManager.InputControl.input;
 
@@ -21,6 +24,58 @@ public class TalkManager : MonoBehaviour
         {
             FinishTalk();
         });
+    }
+
+    public void OnTalkCutscene(TalkingCharacter chara, Action OnRetControl)
+    {
+        isTalking = true;
+        OnReturnControl = OnRetControl;
+        int mapIndex = GameManager.Inst.mapIndex;
+        if (chara == null)
+        {
+            crtTextBubble = cutsceneTextBubble;
+            talkingCharacter = null;
+            if (mapIndex != 4)
+            {
+                var textAsset = DataManager.GetMapInitBlockSO(mapIndex).cutsceneText;
+                dialogue = new InkDialogue(textAsset);
+            }
+            else
+            {
+                var textAsset = DataManager.GetGlobalDataSO().endCutsceneDialogue;
+                dialogue = new InkDialogue(textAsset);
+            }
+        }
+        else
+        {
+            crtTextBubble = textBubble;
+            talkingCharacter = chara;
+            var textAsset = mapIndex == 1
+                ? DataManager.GetGlobalDataSO().deathDialogue1
+                : DataManager.GetGlobalDataSO().deathDialogue2;
+            dialogue = new InkDialogue(textAsset);
+        }
+
+        crtTextBubble.Show();
+        TalkOneSentence();
+    }
+
+    private void Update()
+    {
+        if (!GameManager.Inst.isGameEnd && GameManager.Inst.gameStage != 1)
+        {
+            return;
+        }
+
+        if (!isTalking)
+        {
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            TalkOneSentence();   
+        }
     }
 
     public void OnTalk(TalkingCharacter chara, Action OnRetControl)
@@ -42,6 +97,7 @@ public class TalkManager : MonoBehaviour
 
             OnReturnControl = OnRetControl;
             isTalking = true;
+            crtTextBubble = textBubble;
             // GameManager.InputControl.SetAllInputActionDisableExcept(input.Gameplay.Talk, true);
             talkingCharacter = chara;
 
@@ -49,7 +105,7 @@ public class TalkManager : MonoBehaviour
 
             // Inst.textBubble.SetBubblePos(Inst.talkingCharacter.bubblePoint); // 对话框位置暂时固定
             // textBubble.gameObject.SetActive(true);
-            TextBubble.Show();
+            crtTextBubble.Show();
 
             // var playerX = GameManager.GetCharacter("Shangui").transform.position.x;
             // var npcX = talkingCharacter.transform.position.x;
@@ -91,24 +147,33 @@ public class TalkManager : MonoBehaviour
         }
         else
         {
-            TextBubble.SetBubbleContent(content, dialogue.listCrtChoice);
+            crtTextBubble.SetBubbleContent(content, dialogue.listCrtChoice);
+
+            if (dialogue.crtTag.ContainsKey("cg"))
+            {
+                IntEventSystem.Send(GameEventEnum.ChangeCG, dialogue.crtTag["cg"]);
+            }
+            
             if (dialogue.crtTag.ContainsKey("chara"))
             {
                 crtCharaName = dialogue.crtTag["chara"];
-                TextBubble.SetName(crtCharaName);
+                crtTextBubble.SetName(crtCharaName);
             }
 
             if (crtCharaName == "旁白")
             {
-                TextBubble.SetImgChara(null);
+                crtTextBubble.SetImgChara(null);
             }
             else if (crtCharaName == "小女孩")
             {
-                TextBubble.SetImgChara(DataManager.GetGlobalDataSO().playerLihui);
+                crtTextBubble.SetImgChara(DataManager.GetGlobalDataSO().playerLihui);
             }
             else
             {
-                TextBubble.SetImgChara(talkingCharacter.listLihui[0]);
+                if (talkingCharacter != null)
+                {
+                    crtTextBubble.SetImgChara(talkingCharacter.listLihui[0]);
+                }
                 // if (dialogue.crtTag.ContainsKey("image"))
                 // {
                     // var sprName = crtCharaName;
@@ -124,7 +189,7 @@ public class TalkManager : MonoBehaviour
                 //     TextBubble.SetImgChara(null);
                 // }
             }
-            talkingCharacter.ProcessTag(dialogue.crtTag);
+            // talkingCharacter.ProcessTag(dialogue.crtTag);
         }
     }
 
@@ -132,7 +197,7 @@ public class TalkManager : MonoBehaviour
     {
         isTalking = false;
         // GameManager.InputControl.RestoreInputActionEnableState();
-        TextBubble.Hide();
+        crtTextBubble.Hide();
         
         Debug.Log("[TalkManager] FinishTalk");
         // IntEventSystem.Send(GameEventEnum.FinishTalk, talkingCharacter);

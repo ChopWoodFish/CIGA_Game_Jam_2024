@@ -16,6 +16,7 @@ MonoBehaviour:
   playerBlockPos: {x: 2, y: 11}
   passBlockPos: {x: 5, y: 0}
   npcBlockPos1: {x: 1, y: 2}
-  npcBlockPrefab1: {fileID: 0}
+  npcBlockPrefab1: {fileID: 3151786993966084730, guid: 4757e80de4898433ebb23d048d8e91b5, type: 3}
   npcBlockPos2: {x: 8, y: 9}
-  npcBlockPrefab2: {fileID: 0}
+  npcBlockPrefab2: {fileID: 3151786993966084730, guid: 462b67ad3717446a5929e5e2db59d8fe, type: 3}
+  cutsceneText: {fileID: 4900000, guid: 6f75885e9e05543bd97c92efbf87d736, type: 3}

@@ -68,11 +68,19 @@ public class TextBubble : MonoBehaviour
 
     public void SetName(string name)
     {
+        if (tmpName == null)
+        {
+            return;
+        }
         tmpName.text = name;
     }
 
     public void SetImgChara(Sprite spr)
     {
+        if (imgChara == null)
+        {
+            return;
+        }
         if (spr == null)
         {
             imgChara.gameObject.SetActive(false);

@@ -2,6 +2,7 @@
 public enum GameEventEnum
 {
     GameStart,  // 游戏开始
+    CutsceneStart,
     BlockGameStart,   // 初始化俄罗斯方块部分
     GoToTitle,  // 回到标题
     BlockGameFinish,
@@ -12,4 +13,5 @@ public enum GameEventEnum
     GetTuna,
     FinishPlayVideo,
     SkipTalk,
+    ChangeCG,
 }

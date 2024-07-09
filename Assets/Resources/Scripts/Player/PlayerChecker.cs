@@ -12,7 +12,7 @@ public class PlayerChecker : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Inst.gameStage != 2)
+        if (GameManager.Inst.gameStage != 3)
         {
             return;
         }

@@ -226,7 +226,7 @@ public class BlockGameManager : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Inst.gameStage != 1)
+        if (GameManager.Inst.gameStage != 2)
         {
             return;
         }
