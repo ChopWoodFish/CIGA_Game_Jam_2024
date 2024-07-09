@@ -12,6 +12,7 @@ public class TextBubble : MonoBehaviour
     [SerializeField] private TextMeshProUGUI tmpContent;
     [SerializeField] private Image imgChara;
     [SerializeField] private List<Button> listBtnChoice = new List<Button>();
+    [SerializeField] private Button btnSkip;
     private Transform point;
 
     private RectTransform UIRT;
@@ -26,6 +27,11 @@ public class TextBubble : MonoBehaviour
         {
             btnChoice.gameObject.SetActive(false);
         }
+        
+        btnSkip.onClick.AddListener(() =>
+        {
+            IntEventSystem.Send(GameEventEnum.SkipTalk, null);
+        });
     }
 
     public void SetBubblePos(Transform point)
@@ -35,6 +41,7 @@ public class TextBubble : MonoBehaviour
 
     public void SetBubbleContent(string content, List<Choice> listChoice)
     {
+        content = content.Replace("\\n", "\n");
         tmpContent.text = content;
 
         foreach (var btnChoice in listBtnChoice)

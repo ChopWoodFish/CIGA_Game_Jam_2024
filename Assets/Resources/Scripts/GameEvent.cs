@@ -11,4 +11,5 @@ public enum GameEventEnum
     GoToNextMap,
     GetTuna,
     FinishPlayVideo,
+    SkipTalk,
 }

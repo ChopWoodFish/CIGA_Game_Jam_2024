@@ -17,6 +17,10 @@ public class TalkManager : MonoBehaviour
     private void Start()
     {
         Inst = this;
+        IntEventSystem.Register(GameEventEnum.SkipTalk, (param) =>
+        {
+            FinishTalk();
+        });
     }
 
     public void OnTalk(TalkingCharacter chara, Action OnRetControl)
