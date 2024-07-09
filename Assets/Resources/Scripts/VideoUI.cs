@@ -26,6 +26,7 @@ public class VideoUI : MonoBehaviour
     {
         // videoPlayer.clip = videoClip;
         // Debug.Log($"VideoUI: set clip {videoPlayer.clip.name}, length {videoPlayer.clip.length}");
+        videoPlayer.url = Application.streamingAssetsPath + "/开场动画.mp4";
         videoPlayer.prepareCompleted += (p) =>
         {
             Debug.Log($"VideoUI: player prepare complete, isTriggered: {isTriggered}");
