@@ -2257,7 +2257,7 @@ MonoBehaviour:
   transEndLine: {fileID: 1755146046}
   oneBlockSize: 1
   oneDropTime: 1
-  endRowIndex: 5
+  endRowIndex: 6
 --- !u!1001 &1545232554
 PrefabInstance:
   m_ObjectHideFlags: 0
